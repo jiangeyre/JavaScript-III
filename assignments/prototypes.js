@@ -75,7 +75,8 @@ Villain.prototype.attackHero = function (){
   let dmgTakenFromHero = 3;
   this.healthPoints = this.healthPoints - dmgTakenFromHero;
   while (this.healthPoints > 0){
-    return this.healthPoints - dmgTakenFromHero;
+    let remainingHealth = this.healthPoints - dmgTakenFromHero;
+    return `${this.name} has taken damage and has ` + remainingHealth + " health left.";
   }
   if (this.healthPoints === 0){
     return `${this.name} is deceased. His soul has been devoured and taken to Satan.`;
@@ -94,7 +95,8 @@ Hero.prototype.attackVillain = function (){
   let dmgTakenFromVillain = 2;
   this.healthPoints = this.healthPoints - dmgTakenFromVillain;
   while ( this.healthPoints > 0 ) {
-    return this.healthPoints - dmgTakenFromVillain;
+    let remainingHealth = this.healthPoints - dmgTakenFromVillain;
+    return `${this.name} has taken damage and has ` + remainingHealth + " health left.";
   }
   if ( this.healthPoints === 0 ){
     return `${this.name} is dead. Our hero is dead. *plaintive cries* May his soul reach the heavens.`;
@@ -113,7 +115,7 @@ const sauron = new Villain({
   name: 'Sauron - The Necromancer',
   team: 'Mage Guild',
   weapons: [
-    'One Ring', 'Maia', 'Dark Sorcery', 'Mace'
+    'One Ring', ' Maia', ' Dark Sorcery', ' Mace'
   ],
   language: 'All Languages',
 });
@@ -130,7 +132,7 @@ const thranduil = new Hero({
   team: 'Mirkwood',
   weapons: [
     'Sword',
-    'Giant Cape', 'Son - Legolas'
+    ' Giant Cape', ' Son - Legolas'
   ],
   language: 'Elvish',
 });
