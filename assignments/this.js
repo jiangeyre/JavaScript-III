@@ -14,17 +14,99 @@
 */
 
 // Principle 1
-
 // code example for Window Binding
 
-// Principle 2
+function sacrifice(){
+    console.log(this.baphomet);
+}
+var baphomet = "😈 Who shall we sacrifice today to our savior, Baphomet? 🔪";
 
+sacrifice();
+
+
+// Principle 2
 // code example for Implicit Binding
 
-// Principle 3
+let sacrificialVirgin = {
+    name: 'Edward',
+    age: 13,
+    location: 'Salem, Oregon',
+    beg: function(){
+        console.log(`Please don't sacrifice me. My name is ${this.name}. I am only ${this.age}-years-old. I live with my family in ${this.location}. 🥺`);
+    }
+}
 
+sacrificialVirgin.beg();
+
+
+// Principle 3
 // code example for New Binding
 
-// Principle 4
+function Baphomet(dialogue){
+    this.phrase = dialogue;
+}
+ let myDevil = new Baphomet('Welcome, my child. Your soul was delicious.');
 
+console.log(myDevil.phrase);
+
+
+// Principle 4
 // code example for Explicit Binding
+
+//call
+function evilSpirit () {
+    console.log(this.scream);
+}
+
+let myEvil = {
+    name: 'Medusa',
+    scream: '🐍, HISS HISS. RUN WHILE YOU CAN BEFORE I TURN YOU INTO STONE.'
+}
+
+let herEvil = {
+    name: 'Pennywise',
+    scream: 'OH HOW I HAVE MISSED YOU 🤡'
+}
+
+evilSpirit.call(myEvil);
+evilSpirit.call(herEvil);
+
+//bind
+function nightmare(){
+    console.log(this.scare);
+}
+
+let myNightmare = {
+    name: 'Perfection',
+    scare: 'You will never achieve perfection in your entire life.'
+}
+
+let yourNightmare = {
+    name: 'Intimacy',
+    scare: 'You will never know true intimacy in your relationships.'
+}
+
+savageNightmare = nightmare.bind(myNightmare);
+savageNightmare();
+
+savageNightmare = nightmare.bind(yourNightmare);
+savageNightmare();
+
+//apply
+function hellSpeak(person, adjective) {
+    this.greeting = "Good day, ";
+    this.person = person;
+    this.adj = adjective;
+    this.speak = function() {
+        console.log(this.greeting + this.person + ". " + this.adj + " day in Hell, isn't it? A wonderful day to torture these poor souls.");
+    };
+}
+
+const oscarWilde = new hellSpeak('Oscar Wilde', 'Marvelous');
+const voldy = new hellSpeak('Lord Voldemort - a.k.a. Tom Marvolo Riddle', 'Absolutely beautiful');
+
+//oscarWilde.speak();
+//voldy.speak();
+
+oscarWilde.speak.call(voldy);
+voldy.speak.apply(oscarWilde);
