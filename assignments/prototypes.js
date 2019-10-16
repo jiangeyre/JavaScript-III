@@ -66,24 +66,87 @@ Humanoid.prototype.greet = function () {
 // * Create two new objects, one a villain and one a hero and fight it out with methods!
 function Villain(villainAttr){
   Humanoid.call(this, villainAttr);
-
+  this.attackDmg = villainAttr.attackDmg;
+  this.healthRegen = villainAttr.healthRegen;
 }
 Villain.prototype = Object.create(Humanoid.prototype);
 
 Villain.prototype.attackHero = function (){
-
+  let dmgTakenFromHero = 3;
+  this.healthPoints = this.healthPoints - dmgTakenFromHero;
+  while (this.healthPoints > 0){
+    return this.healthPoints - dmgTakenFromHero;
+  }
+  if (this.healthPoints === 0){
+    return `${this.name} is deceased. His soul has been devoured and taken to Satan.`;
+  }
+  return this.healthPoints;
 };
 
 function Hero(heroAttr){
   Humanoid.call(this, heroAttr);
-
+  this.attackDmg = heroAttr.attackDmg;
+  this.healthRegen = heroAttr.healthRegen;
 }
 Hero.prototype = Object.create(Humanoid.prototype);
 
 Hero.prototype.attackVillain = function (){
-
+  let dmgTakenFromVillain = 2;
+  this.healthPoints = this.healthPoints - dmgTakenFromVillain;
+  while ( this.healthPoints > 0 ) {
+    return this.healthPoints - dmgTakenFromVillain;
+  }
+  if ( this.healthPoints === 0 ){
+    return `${this.name} is dead. Our hero is dead. *plaintive cries* May his soul reach the heavens.`;
+  } 
+  return this.healthPoints;
 };
 
+const sauron = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 1,
+    height: 1,
+  },
+  healthPoints: 15,
+  name: 'Sauron - The Necromancer',
+  team: 'Mage Guild',
+  weapons: [
+    'One Ring', 'Maia', 'Dark Sorcery', 'Mace'
+  ],
+  language: 'All Languages',
+});
+
+const thranduil = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 2,
+    height: 4,
+  },
+  healthPoints: 16,
+  name: 'Thranduil',
+  team: 'Mirkwood',
+  weapons: [
+    'Sword',
+    'Giant Cape', 'Son - Legolas'
+  ],
+  language: 'Elvish',
+});
+
+console.log(thranduil.name + " has these weapons: " + thranduil.weapons + ".");
+console.log(sauron.name + " has these weapons: " + sauron.weapons + ".");
+console.log(thranduil.attackVillain());
+console.log(sauron.attackHero());
+console.log(thranduil.attackVillain());
+console.log(sauron.attackHero());
+console.log(thranduil.attackVillain());
+console.log(sauron.attackHero());
+console.log(thranduil.attackVillain());
+console.log(sauron.attackHero());
+console.log(thranduil.attackVillain());
+console.log(sauron.attackHero());
 
 
 /*
